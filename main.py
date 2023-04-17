@@ -45,14 +45,23 @@ class Interface(QtWidgets.QWidget):
         self.update_file()
 
     def update_file(self):
-        from test import xs, ys
+        from test import xs, ys, color
+        if len(self.values) >= 2:
+            if self.values[-1] > 1.4 * self.values[-2] or self.values[-1] < 0.6 * self.values[-2]:
+                color.append("-r")
 
+            elif (self.values[-1] > self.values[-2] and self.values[-1] < 1.05*self.values[-2]) and (self.values[-1] < self.values[-2] and self.values[-1] > 0.95*self.values[-2]):
+                color.append("-o")
+            else:
+                color.append("-g")
+
+        else:
+            color = '-g'
         xs.append(len(self.values))
         ys.append(self.values[-1])
        
 
 if __name__ == '__main__':
-
     app = QtWidgets.QApplication(sys.argv)
     mywin = Interface()
     mywin.show()
