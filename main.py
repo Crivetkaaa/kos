@@ -41,6 +41,11 @@ class Interface(QtWidgets.QWidget):
         else:
             for i in range(1, 10):
                 self.all_labels[-i].setText(str(self.values[-i]))
+        self.update_file()
+
+    def update_file(self):
+        with open('info.txt', 'a') as file:
+            file.write(f"{len(self.values)}, {self.values[-1]}\n")
        
 
 if __name__ == '__main__':
