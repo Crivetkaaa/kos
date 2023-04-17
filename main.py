@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QMessageBox
 import sys
 
 
+
 class Interface(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -44,8 +45,10 @@ class Interface(QtWidgets.QWidget):
         self.update_file()
 
     def update_file(self):
-        with open('info.txt', 'a') as file:
-            file.write(f"{len(self.values)}, {self.values[-1]}\n")
+        from test import xs, ys
+
+        xs.append(len(self.values))
+        ys.append(self.values[-1])
        
 
 if __name__ == '__main__':
