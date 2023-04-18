@@ -76,6 +76,24 @@ class Ui_MainWindow(object):
         self.label_12 = QtWidgets.QLabel(self.centralwidget)
         self.label_12.setGeometry(QtCore.QRect(380, 260, 81, 31))
         self.label_12.setObjectName("label_12")
+        self.label_max = QtWidgets.QLabel(self.centralwidget)
+        self.label_max.setGeometry(QtCore.QRect(10, 90, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label_max.setFont(font)
+        self.label_max.setObjectName("label_max")
+        self.label_min = QtWidgets.QLabel(self.centralwidget)
+        self.label_min.setGeometry(QtCore.QRect(10, 130, 151, 31))
+        font = QtGui.QFont()
+        font.setPointSize(11)
+        self.label_min.setFont(font)
+        self.label_min.setObjectName("label_min")
+        self.lineEdit_max = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_max.setGeometry(QtCore.QRect(120, 100, 113, 20))
+        self.lineEdit_max.setObjectName("lineEdit_max")
+        self.lineEdit_min = QtWidgets.QLineEdit(self.centralwidget)
+        self.lineEdit_min.setGeometry(QtCore.QRect(120, 140, 113, 20))
+        self.lineEdit_min.setObjectName("lineEdit_min")
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -86,7 +104,8 @@ class Ui_MainWindow(object):
         self.pushButton.setText(_translate("MainWindow", "PushButton"))
         self.label.setText(_translate("MainWindow", "Значение"))
         self.label_2.setText(_translate("MainWindow", "Последние 10 значений"))
-
+        self.label_max.setText(_translate("MainWindow", "Максимальное\nзначение"))
+        self.label_min.setText(_translate("MainWindow", "Минимальное\nзначение"))
         
 if __name__ == "__main__":
     import sys
