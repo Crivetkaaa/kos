@@ -2,7 +2,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
 
-
 # User-agent чтобы сайт принимал нас за пользователя а не за машину
 headers = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
@@ -40,7 +39,6 @@ def parse():
         with open('files/info.txt', 'a', encoding='utf-8') as file:
             file.write(f"{country_rate}, {country_name}, {country_people} тыс.чел\n")
         
-
 def main():
     clear_file() # Запускаем функцию отчистки файла
     parse() # Запускаем функция парсинга
