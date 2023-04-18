@@ -65,8 +65,6 @@ class Interface(QtWidgets.QWidget):
                     self.else_info("Число выходит за пределы.")
             else:
                 self.update_info(value)
-            
-                
         except:
             self.else_info("Введите число.")
 
