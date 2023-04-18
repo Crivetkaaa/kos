@@ -1,16 +1,16 @@
-from main_win import *
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QMessageBox
-import sys
-import utilts.parse as parse
+from main_win import * # Файл генерируемы в QtDesigner из него импортируются все функции и классы
+from PyQt5 import QtCore, QtGui, QtWidgets #Библиотека для взаимодействия с виджетами
+import sys #Библиотека для запуска программы
+import utilts.parse as parse # Импортируем функцию и з файла parse.py
 
 # КЛАСС ОКНА
 class Interface(QtWidgets.QWidget):
     # Инициализируем объект класса
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_MainWindow() # Создаем предмет класс
         self.ui.setupUi(self)
+        # Переменные необходимые для работы программы
         self.values = []
         self.last_value = 0
 
@@ -19,13 +19,13 @@ class Interface(QtWidgets.QWidget):
         # Ожидаем нажатия кнопки
         self.ui.pushButton.clicked.connect(self.get_info)
     
-    # Считывается с файла и генерирует текс
+    # Считывается с файла и генерирует текст
     def generate_text(self):
         with open('files/info.txt', 'r', encoding='utf-8') as file:
             text = file.read()
         print(text)
         return text
-    # После нажатия кнопки 
+    # После нажатия кнопки запускается этот блок кода
     def get_info(self):
         parse.main() # Запускается функция из файла parse
         self.ui.label.setText("Данные\nполучены") #Появляется надпись
@@ -34,8 +34,8 @@ class Interface(QtWidgets.QWidget):
 
 def main():
     app = QtWidgets.QApplication(sys.argv)
-    mywin = Interface()
-    mywin.show()
+    mywin = Interface() # Создается объект класса Interface
+    mywin.show() # Показывает окно
     sys.exit(app.exec_())
 
 
