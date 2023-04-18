@@ -94,8 +94,8 @@ class Interface(QtWidgets.QWidget):
             if self.values[-1] > 1.4 * self.values[-2] or self.values[-1] < 0.6 * self.values[-2]:
                 color.append("-r")
 
-            elif (self.values[-1] > self.values[-2] and self.values[-1] < 1.05*self.values[-2]) and (self.values[-1] < self.values[-2] and self.values[-1] > 0.95*self.values[-2]):
-                color.append("-o")
+            elif (self.values[-1] > 1.05*self.values[-2] or self.values[-1] < 0.95*self.values[-2]):
+                color.append("orange")
             else:
                 color.append("-g")
 
