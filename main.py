@@ -26,18 +26,16 @@ class Interface(QtWidgets.QWidget):
         self.last_value = value
         self.update_labels()
     
-    def else_info(self):
+    def else_info(self, text):
         msg = QMessageBox()
         msg.setWindowTitle("TypeError")
-        msg.setText("Число выходит за пределы.")
+        msg.setText(text)
         msg.setIcon(QMessageBox.Warning)
         msg.exec_()
 
     def check_max_min(self, value):
         max = self.ui.lineEdit_max.text()
         min = self.ui.lineEdit_min.text()
-
-        
         try:
             if max =='':
                 max_check = False
@@ -54,28 +52,23 @@ class Interface(QtWidgets.QWidget):
                 if value < float_max and value > float_min:
                     self.update_info(value)
                 else:
-                        self.else_info()
+                        self.else_info("Число выходит за пределы.")
             elif max_check:
                 if value < float_max:
                     self.update_info(value)
                 else:
-                        self.else_info()
+                        self.else_info("Число выходит за пределы.")
             elif min_check:
                 if value > float_min:
                     self.update_info(value)
                 else:
-                    self.else_info()
+                    self.else_info("Число выходит за пределы.")
             else:
                 self.update_info(value)
             
                 
         except:
-            msg = QMessageBox()
-            msg.setWindowTitle("TypeError")
-            msg.setText("Введите число макс.")
-            msg.setIcon(QMessageBox.Warning)
-            msg.exec_()
-            
+            self.else_info("Введите число.")
 
     def get_text(self):
         value = self.ui.lineEdit.text()
@@ -84,12 +77,7 @@ class Interface(QtWidgets.QWidget):
             self.check_max_min(float_value)
                 
         except:
-            print('sorry')
-            msg = QMessageBox()
-            msg.setWindowTitle("TypeError")
-            msg.setText("Введите число.")
-            msg.setIcon(QMessageBox.Warning)
-            msg.exec_()
+            self.else_info("Введите число.")
         
     def update_labels(self):
         if len(self.values) < 10:
@@ -129,15 +117,12 @@ class Interface(QtWidgets.QWidget):
             labels.append(str(value))
             vals.append(her[value]['count'])
             
-
-            
     def numbers_in_values(self):
         value = self.values[-1]
         count = 0
         for i in range(0, len(self.values)):
             if self.values[i] == value:
                 count+=1
-        print(count)
         return count  
     
     def average_func(self):
@@ -146,8 +131,13 @@ class Interface(QtWidgets.QWidget):
             sum += self.values[i]
         return sum/len(self.values)
 
-if __name__ == '__main__':
+
+def main():
     app = QtWidgets.QApplication(sys.argv)
     mywin = Interface()
     mywin.show()
     sys.exit(app.exec_())
+
+
+if __name__ == '__main__':
+    main()
