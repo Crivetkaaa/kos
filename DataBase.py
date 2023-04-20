@@ -62,3 +62,13 @@ class DB:
         conn, cur = cls.open_conn()
         cls.execute(text=f"INSERT INTO users(sclad, name, code, count) VALUES ('{sclad}','{name}','{code}','{count}')", conn=conn, cur=cur)
         cls.close_conn(conn=conn, cur=cur)
+
+    @classmethod
+    def get_len(cls, sclad):
+        conn, cur = cls.open_conn()
+        data = []
+        rows = cls.execute_res(text=f"SELECT * FROM users WHERE sclad={sclad}", cur=cur)
+        for row in rows:
+            data.append(row)
+        cls.close_conn(conn, cur)
+        return data
