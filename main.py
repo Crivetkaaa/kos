@@ -2,7 +2,6 @@ from main_window import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 import sys
-import random
 
 
 class Interface(QtWidgets.QWidget):
@@ -33,48 +32,43 @@ class Interface(QtWidgets.QWidget):
         msg.setIcon(QMessageBox.Warning)
         msg.exec_()
 
+    def maxmin(self, max, min):
+        if max != '':
+            try:
+                float_max = float(max)
+            except:
+                self.else_info('Максимум должен быть числом.')
+        else:
+            float_max = float('+inf')
+
+        if min != '':
+            try:
+                float_min = float(min)
+            except:
+                self.else_info('Минимум должен быть числом.')
+
+        else:
+            float_min = float('-inf')
+
+        return float_max, float_min
+
     def check_max_min(self, value):
         max = self.ui.lineEdit_max.text()
         min = self.ui.lineEdit_min.text()
-        try:
-            if max =='':
-                max_check = False
-            else:
-                max_check = True
-                float_max = float(max)
-
-            if min =='':
-                min_check = False
-            else:
-                min_check = True
-                float_min = float(min)
-            if max_check and min_check:
-                if value < float_max and value > float_min:
-                    self.update_info(value)
-                else:
-                        self.else_info("Число выходит за пределы.")
-            elif max_check:
-                if value < float_max:
-                    self.update_info(value)
-                else:
-                        self.else_info("Число выходит за пределы.")
-            elif min_check:
-                if value > float_min:
-                    self.update_info(value)
-                else:
-                    self.else_info("Число выходит за пределы.")
-            else:
+        max, min = self.maxmin(max, min)
+        if max and min:
+            if value < max and value > min:
                 self.update_info(value)
-        except:
-            self.else_info("Введите число.")
+            else:
+                self.else_info('Число выходит за пределы')        
 
     def get_text(self):
         value = self.ui.lineEdit.text()
         try:
             float_value = float(value)
             self.check_max_min(float_value)
-                
-        except:
+
+        except:     
             self.else_info("Введите число.")
         
     def update_labels(self):
