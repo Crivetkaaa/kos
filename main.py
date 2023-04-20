@@ -62,12 +62,10 @@ class Interface(QtWidgets.QWidget):
             self.else_info(text=f'На складе {sclad} нет товаров')
 
     def generate_code(self, sclad):
-        random_code = random.randint(1, 10000)
-        if len(str(random_code))<5:
-            string = f"00{sclad}{'0'*(5-len(str(random_code)))}{random_code}"
-        else:
-            string = f"00{sclad}{random_code}"
+        data = DB.get_len(sclad=sclad)
+        len_data = len(data)
 
+        string = f'00{sclad}{len_data+1}'
         return string
 
     def check_sclad_product(self, product_name, sclad, product_count):
