@@ -1,7 +1,6 @@
 import sqlite3
 
 class DB:
-    
     @staticmethod
     def execute_res(text, cur):
         rows = cur.execute(text)
